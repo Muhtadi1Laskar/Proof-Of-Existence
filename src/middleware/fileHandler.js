@@ -8,7 +8,7 @@ const upload = multer({
         fileSize: 100 * 1024 * 1024
     },
     fileFilter: (req, res, cb) => {
-        if(acceptedFiles.includes(file.mimeType) || file.mimeType.startsWith("image/")) {
+        if (acceptedFiles.includes(file.mimeType) || file.mimeType.startsWith("image/")) {
             cb(null, true);
         } else {
             cb(new Error("Invalid file type"), false);
