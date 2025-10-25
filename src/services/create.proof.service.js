@@ -1,4 +1,3 @@
-import { generateHash } from "./hash.service.js"
 import proofModel from "../models/proof.model.js";
 
 export const createProof = async (hash, owner, metadata) => {
