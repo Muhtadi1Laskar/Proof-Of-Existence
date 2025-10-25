@@ -1,8 +1,7 @@
 import { generateHash } from "./hash.service.js"
 import proofModel from "../models/proof.model.js";
 
-export const createProof = async (buf, owner, metadata) => {
-    const hash = generateHash(buf);
+export const createProof = async (hash, owner, metadata) => {
     const timestamp = new Date().toISOString();
 
     const existing = await proofModel.findOne({ hash, owner });
@@ -17,5 +16,14 @@ export const createProof = async (buf, owner, metadata) => {
         metadata
     });
 
-    return proof;
+    await proof.save();
+
+    return {
+        id: proof._id,
+        owner: proof.owner,
+        fileHash: proof.hash,
+        metadata: proof.metadata,
+        timeStamp: proof.timestamp,
+        onChainTx: proof.onChainTx
+    };
 }

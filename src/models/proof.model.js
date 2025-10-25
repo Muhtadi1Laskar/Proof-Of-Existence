@@ -1,9 +1,9 @@
 import mongoose from "mongoose";
 
 const metadata = mongoose.Schema({
-    fileName: { type: String, required: true },
-    size: { type: Number, required: true },
-    type: { type: String, required: true }
+    fileName: { type: String, required: false },
+    size: { type: Number, required: false },
+    type: { type: String, required: false }
 });
 
 const ProofSchema = new mongoose.Schema({
