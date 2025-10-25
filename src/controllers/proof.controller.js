@@ -1,4 +1,4 @@
-import { createProof } from "../services/createProof.service.js";
+import { createProof } from "../services/proof.service.js";
 import { generateHash } from "../services/hash.service.js";
 import { errorResponse, successResponse } from "../utils/response.js"
 
