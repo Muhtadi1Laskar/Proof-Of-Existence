@@ -12,7 +12,7 @@ export const createFileProof = async (req, res, next) => {
     const metadata = {
         fileName: originalname,
         size,
-        type: mimeType
+        type: "text"
     };
     
     try {

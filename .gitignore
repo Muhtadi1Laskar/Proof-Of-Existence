@@ -2,6 +2,8 @@
 node_modules/
 */node_modules/
 */*/node_modules/
+src/.env
+.env
 
 # Also ignore common Node.js files you don't want to track
 *.log

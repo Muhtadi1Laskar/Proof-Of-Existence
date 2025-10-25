@@ -1,15 +1,21 @@
 import { generateHash } from "./hash.service.js"
+import proofModel from "../models/proof.model.js";
 
 export const createProof = async (buf, owner, metadata) => {
-    const hashData = generateHash(buf);
-    const timeStamp = new Date();
-    const body = {
-        hash: hashData,
+    const hash = generateHash(buf);
+    const timestamp = new Date().toISOString();
+
+    const existing = await proofModel.findOne({ hash, owner });
+    if (existing) throw new Error("Proof already exists");
+
+    const proof = await proofModel.create({
+        hash,
         algorithm: "SHA-256",
-        timeStamp,
+        timestamp,
         owner,
         onChainTx: "",
         metadata
-    };
-    return body;
+    });
+
+    return proof;
 }
