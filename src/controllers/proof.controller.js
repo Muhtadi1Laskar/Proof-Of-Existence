@@ -1,5 +1,6 @@
 import { createProof } from "../services/create.proof.service.js";
 import { generateHash } from "../services/hash.service.js";
+import { retriveByOwner } from "../services/retrive.proof.service.js";
 import { verifyProof } from "../services/verify.proof.service.js";
 import { errorResponse, successResponse } from "../utils/response.js"
 
@@ -67,6 +68,18 @@ export const verifyHashProofs = async (req, res, next) => {
 
     try {
         const proof = await verifyProof(hash, owner);
+        successResponse(res, { proof }, 200);
+    } catch (error) {
+        next(error);
+    }
+}
+
+export const retriveProofByOwner = async (req, res, next) => {
+    const owner = req.params.id;
+    console.log(req.params);
+
+    try {
+        const proof = await retriveByOwner(owner);
         successResponse(res, { proof }, 200);
     } catch (error) {
         next(error);

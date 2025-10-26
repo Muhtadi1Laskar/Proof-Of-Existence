@@ -9,7 +9,11 @@ export const retriveByOwner = async (owner) => {
         throw new Error("Owner cannot be empty");
     }
 
-    const proof = proofModel.find({ owner });
+    const proof = await proofModel.find({ owner });
+
+    if(proof.length === 0) {
+        throw new Error(`No proofs under the owner ${owner}`);
+    }
 
     return proof;
 }
