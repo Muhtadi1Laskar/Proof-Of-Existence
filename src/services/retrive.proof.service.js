@@ -5,13 +5,13 @@ export const retriveByOwner = async (owner) => {
         throw new Error("Give a valid owner name");
     }
 
-    if(owner.length === 0) {
+    if (owner.length === 0) {
         throw new Error("Owner cannot be empty");
     }
 
     const proof = await proofModel.find({ owner });
 
-    if(proof.length === 0) {
+    if (proof.length === 0) {
         throw new Error(`No proofs under the owner ${owner}`);
     }
 
